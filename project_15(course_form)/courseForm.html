@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+.wrapper {
+width:80%;
+padding-bottom:70px;
+}
+.container {
+display:flex;
+justify-content:center;
+background:#aa2214;
+}
+input {
+width:100%;
+height:40px;
+border-radius:5px;
+}
+.submitForm {
+margin-top:30px;
+width:100%;
+height:35px;
+border-radius:7px;
+background:green;
+border:0;
+font-size:25px;
+color:white;
+}
+.error {
+padding:5px;
+background:red;
+color:white;
+display:none
+}
+.spinner {
+padding:10px;
+background:blue;
+display:none;
+}
+
+.heading {
+padding:10px;
+background:orange;
+}
+.img{
+    width:200px;
+    height:200px;
+}
+.card{
+    width:200px;
+ 
+    background-color: cadetblue;
+}
+.list{
+    list-style-type: none;
+    width:100%;
+    margin-left:-40px;
+    margin-top:0px;
+}
+li{
+    padding:7px;
+    border:1px solid black;
+    color:white;
+}
+.output{
+    margin-top:70px;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.button{
+    display: flex;
+    justify-content: center;
+}
+.deleteBtn{
+    border:none;
+    border-radius: 5px;
+    height:30px;
+}
+</style>
+<body>
+<div class="container">
+<div class="wrapper">
+<div class="heading"><h1>COURSE FORM</div>
+<div class="error">please fill all the forms</div>
+
+<div class="divName">
+<h3>NAME</h3>
+<input type="text" class="name"/>
+</div>
+<div class="divCourse">
+<h3>Course</h3>
+<input type="text" class="course"/>
+</div>
+<div class="divAuthor">
+<h3>Author</h3>
+<input type="text" class="author"/>
+</div>
+<div class="submit">
+<input type="submit" value="submit" class="submitForm"/>
+</div>
+<div class="spinner">jddjdjjd</div>
+<div class="output"></div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+(function(){
+    let images = [
+        "images (1).jpeg",
+        "images (1).png",
+        "images (2).jpeg",
+        "images (2).png",
+        "images (3).png",
+        "images (3).jpeg",
+        "images (4).png",
+        "images (4).jpeg",
+        "images (5).jpeg",
+        "images (6).jpeg",
+        "images (8).jpeg",
+        "images (9).jpeg",
+        "images (10).jpeg",
+        "images (13).jpeg",
+        "images (14).jpeg",
+        "images (15).jpeg"
+      ];
+let name=document.querySelector(".name")
+let course=document.querySelector(".course")
+let author =document.querySelector(".author")
+let submit=document.querySelector(".submitForm")
+let output=document.querySelector(".output")
+let spinner=document.querySelector(".spinner")
+let error=document.querySelector(".error")
+
+function Course(name,course,author){
+this.name=name;
+this.course=course;
+this.author=author;
+this.image=images[Math.floor(Math.random() * ((images.length-1) - 0) + 0)]
+}
+function UI(){}
+UI.prototype.clearForm=function(){
+    name.value=""
+    course.value=""
+author.value=""
+}
+UI.prototype.create=function(respon){
+    console.log(respon)
+    let div = document.createElement("div")
+    div.className="card"
+    let img= document.createElement("img")
+    img.className='img'
+    img.src=`images/${respon.image}`
+    let data = document.createElement("div")
+    let container=document.createElement("div")
+    container.className="button"
+    let deleteDiv=document.createElement("div")
+    deleteDiv.className="delete"
+   
+
+
+    let deletebtn=document.createElement("button")
+    deletebtn.className="deleteBtn"
+    deletebtn.innerHTML="delete"
+    
+   
+deleteDiv.appendChild(deletebtn)
+
+container.appendChild(deleteDiv)
+
+
+    data.className="data"
+    data.innerHTML=`
+    <ul class="list">
+    <li class="li-name">Name : ${respon.name}</li>
+    <li class="li-author">Author : ${respon.author}</li>
+    <li class="li-course">Course : ${respon.course}</li>
+    </ul>
+  
+    `
+   div.appendChild(img)
+   div.appendChild(data)
+   div.appendChild(container)
+   output.appendChild(div)
+
+}
+UI.prototype.deleteCard=function(value){
+output.removeChild(value)
+}
+UI.prototype.editCard=function(value){
+output.removeChild(value)
+}
+submit.addEventListener("click",function(e){
+if(name.value =="" || course.value=="" || author.value==""){
+
+error.style.display="block"
+setTimeout(function(){
+error.style.display="none"
+},2000)
+}else {
+let respon=new Course(name.value,course.value,author.value)
+
+let ui=new UI()
+ui.clearForm()
+ui.create(respon)
+}
+e.preventDefault()
+})
+
+output.addEventListener("click",function(e){
+    if(e.target.classList.contains("deleteBtn")){
+    
+        let ui=new UI()
+ui.deleteCard(e.target.parentElement.parentElement.parentElement)
+    } 
+    
+})
+
+
+})()
+</script>
+
+</body>
+</html>

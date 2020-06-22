@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Change background with js</title>
+        <style>
+          body {
+            background-color: red;
+
+            height: 100%;
+          }
+          .button {
+            width: 90px;
+            height: 40px;
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: blue;
+            padding: 5px;
+
+            text-align: center;
+            color: white;
+            cursor: pointer;
+          }
+          .container {
+            height: 620px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            flex-direction: column;
+          }
+          .quote {
+            background: red;
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="quote">
+            wjkslsl
+          </div>
+          <div class="button">
+            <p>Click me</p>
+          </div>
+        </div>
+
+        <script>
+          (function() {
+            let quotes = [
+              {
+                quote:
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos accusamus, dolorum quisquam ipsam porro dolorem eaque. Maiores, dolorum atque quaerat deleniti cupiditate voluptates eius? Magnam non aspernatur sunt perferendis possimus illum. Id dolorem consequatur,",
+                writer: "Fakorede Damilola"
+              },
+              {
+                quote:
+                  "Rerum laudantium quo numquam dignissimos sint. Itaque nesciunt veritatis alias suscipit qui illo numquam voluptates, dolore in labore.",
+                writer: "Fakorede Dayo"
+              },
+              {
+                quote:
+                  " aut aspernatur molestias excepturi laborum eum? Velit repudiandae reprehenderit laborum enim necessitatibus, obcaecati labore ullam similique tempora beatae molestiae dicta itaque quidem sequi quam veritatis. ",
+                writer: "shola"
+              },
+              {
+                quote:
+                  "optio necessitatibus tenetur! Tempore aliquam ipsum sequi quas sed nisi, autem accusantium deserunt ea laboriosam, corrupti magnam dolores quibusdam voluptatem quaerat quo distinctio quis,",
+                writer: "mummy"
+              },
+              {
+                quote:
+                  "voluptas illum sed culpa quam accusantium modi vitae quod expedita. Eos sint quae impedit perferendis est dolorum minus ad, illum maiores sunt fugit ipsa alias rerum! Autem repellendus, sapiente molestiae suscipit dolorem quibusdam voluptatum est debitis laborum quos eius tempore eos, libero ut maxime quia recusandae quas maiores voluptate ",
+                writer: "daddy"
+              }
+            ];
+            const button = document.querySelector(".button");
+
+            button.addEventListener("click", function() {
+              console.log(1);
+              let max = quotes.length - 1;
+              let min = 0;
+              let random =
+                quotes[Math.floor(Math.random() * (max - min) + min)];
+              console.log(random);
+
+              let quoteDiv = document.querySelector(".quote");
+              quoteDiv.innerHTML = `
+<p>${random.quote}</p>
+<blockquote>- ${random.writer}</blockquote>`;
+            });
+          })();
+
+          //WITHOUT IIFES USING CLOSURE
+
+          //           let random;
+          //           button.addEventListener("click", getQuote(Quotes));
+          // //STEP 1
+          //           function getQuote(quote) {
+          //             return function() {
+          //               let max = quote.length - 1;
+          //               let min = 0;
+          //               random = quote[Math.floor(Math.random() * (max - min) + min)];
+          //               console.log(random);
+
+          //               let quoteDiv = document.querySelector(".quote");
+          //               quoteDiv.innerHTML = `
+          // <p>${random.quote}</p>
+          // <blockquote>- ${random.writer}</blockquote>`;
+          //             };
+          //           }
+
+          //USING BIND
+
+          //           let random;
+          //           button.addEventListener("click", getQuote.bind(this, Quotes));
+          //           //STEP 1
+          //           function getQuote(quote) {
+          //             let max = quote.length - 1;
+          //             let min = 0;
+          //             random = quote[Math.floor(Math.random() * (max - min) + min)];
+          //             console.log(random);
+
+          //             let quoteDiv = document.querySelector(".quote");
+          //             quoteDiv.innerHTML = `
+          // <p>${random.quote}</p>
+          // <blockquote>- ${random.writer}</blockquote>`;
+          //           }
+        </script>
+      </body>
+    </html>
+  </body>
+</html>

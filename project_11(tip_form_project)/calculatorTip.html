@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+.wrapper {
+width:80%;
+padding-bottom:70px;
+}
+.container {
+display:flex;
+justify-content:center;
+background:#aa2214;
+}
+input {
+width:100%;
+height:40px;
+border-radius:5px;
+}
+.submitForm {
+margin-top:30px;
+width:100%;
+height:35px;
+border-radius:7px;
+background:green;
+border:0;
+font-size:25px;
+color:white;
+}
+.error {
+padding:5px;
+background:red;
+color:white;
+display:none
+}
+.spinner,.output {
+padding:10px;
+background:blue;
+display:none;
+}
+
+.heading {
+padding:10px;
+background:orange;
+}
+.select {
+width:100%;
+height:35px;
+}
+</style>
+<body>
+<div class="container">
+<div class="wrapper">
+<div class="heading"><h1>TIP CALCULATOR</div>
+<div class="error">please fill all the forms</div>
+
+<div class="amt">
+<h3>Amount</h3>
+<input type="number" class="amtValue"/>
+</div>
+<div class="people">
+<h3>Number of people to share the tip</h3>
+<input type="number" class="peopleValue"/>
+</div>
+<div class="service ">
+<h3>How was your service </h3>
+<select class="select">
+<option value="select">select</option>
+<option value="20">20%</option>
+<option value="5">5%</option>
+<option value="-2">-2%</option>
+</select>
+<div class="submit">
+<input type="submit" value="submit" class="submitForm"/>
+</div>
+<div class="spinner">jddjdjjd</div>
+<div class="output"></div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+(function(){
+let amtValue=document.querySelector(".amtValue")
+let peopleValue=document.querySelector(".peopleValue")
+let submitForm=document.querySelector(".submitForm")
+let error=document.querySelector(".error")
+let select=document.querySelector(".select")
+let option=document.querySelector("option")
+let spinner=document.querySelector(".spinner")
+let output=document.querySelector(".output")
+
+/*
+select.addEventListener("change",function(e){
+console.log(select.value)
+})*/
+submitForm.addEventListener("click",function(e){
+
+if(amtValue.value =="" || peopleValue.value=="" || select.value=="select"){
+
+error.style.display="block"
+setTimeout(function(){
+error.style.display="none"
+},2000)
+}else {
+let answer =calculate(amtValue.value, peopleValue.value,select.value)
+output.innerHTML=answer;
+output.style.display="none"
+spinner.style.display="block"
+setTimeout(function(){
+spinner.style.display="none"
+
+output.style.display="block"
+},2000)
+setTimeout(function(){
+
+
+output.style.display="none"
+},4000)
+}
+
+e.preventDefault()
+})
+function calculate(amt,pple,select){
+let tip =(parseInt(select)*parseInt(amt))/100
+let price=parseInt(amt)+tip
+let result =price/parseInt(pple)
+return result
+}
+})()
+</script>
+
+</body>
+</html>

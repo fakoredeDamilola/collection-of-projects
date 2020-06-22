@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      width: 100%;
+      height: 600px;
+      background-color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .wrapper {
+      position: relative;
+      width: 80%;
+      background-color: coral;
+      text-align: center;
+    }
+    .button {
+      position: absolute;
+      top: 50%;
+
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .button button {
+      height: 30px;
+    }
+    p {
+      font-size: 25px;
+    }
+    .img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+    .imgContainer {
+      position: relative;
+      top: -100px;
+    }
+    .text {
+      margin-top: -100px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="imgContainer">
+          <img src="images/images (1).jpeg" alt="" class="img" />
+        </div>
+
+        <div class="text">
+          <p class="name">Solomon</p>
+          <div class="word">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit
+            perspiciatis totam quam dolore consequuntur aut ducimus ipsam,
+            dolores exercitationem hic debitis reprehenderit, delectus culpa
+            unde eius commodi fuga dignissimos corrupti.
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <div>
+          <button class="change prev">
+            prev
+          </button>
+        </div>
+        <div>
+          <button class="change next">
+            next
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        let img = document.querySelector(".img");
+        let word = document.querySelector(".word");
+        let name = document.querySelector(".name");
+        let arr = [];
+        function Person(name, img, text) {
+          (this.name = name), (this.img = img), (this.text = text);
+        }
+        function createPerson(name, img, text) {
+          let person = new Person(name, img, text);
+          arr.push(person);
+        }
+        let solomon = new createPerson(
+          "solomon",
+          "images/images (1).jpeg",
+          "lorem "
+        );
+        let damilola = new createPerson(
+          "Damilola",
+          "images/images (2).jpeg",
+          "lorem hnbkdnduknd  dikndnkdbnikd jok0okeupel hikhnkdklhndnkdn khkhebhiwbkkn"
+        );
+        let dayo = new createPerson(
+          "Dayo",
+          "images/images (3).jpeg",
+          "lorem hnbkdnduknd  dikndnkdbnikd"
+        );
+        let shola = new createPerson(
+          "shola",
+          "images/images (4).jpeg",
+          "lorem hnbkdnduknd  dikndnkdbnikd jok0okeupel hikhnkdklhndnkdn khkhebhiwbkkn lorem ipsum dolor sit"
+        );
+        let count = 0;
+        console.log(arr);
+        let changes = document.querySelectorAll(".change");
+        changes.forEach(change => {
+          change.addEventListener("click", function(e) {
+            if (e.target.classList.contains("prev")) {
+              if (count === 0) {
+                count = arr.length - 1;
+              } else {
+                count--;
+              }
+              img.src = arr[count].img;
+              name.innerHTML = arr[count].name;
+              word.innerHTML = arr[count].text;
+            }
+            if (e.target.classList.contains("next")) {
+              if (count === arr.length - 1) {
+                count = 0;
+              } else {
+                count++;
+              }
+              img.src = arr[count].img;
+              name.innerHTML = arr[count].name;
+              word.innerHTML = arr[count].text;
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

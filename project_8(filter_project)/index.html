@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .img {
+        width: 200px;
+        height: 200px;
+      }
+      .text {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+      }
+      .container {
+        text-align: center;
+      }
+      .item {
+        background: blue;
+        width: 200px;
+        border: 1px solid black;
+        margin: 10px;
+      }
+      .input {
+        width: 80%;
+        height: 35px;
+      }
+      .wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      button,
+      .submit,
+      #all {
+        width: 70px;
+        height: 30px;
+        border: none;
+        color: white;
+        background-color: chocolate;
+      }
+      .searchBtn {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+      }
+      .inputSearch {
+        margin: 10px 0px;
+      }
+      .submit {
+        height: 41px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Our store</h1>
+      <div class="search">
+        <div class="searchBtn">
+          <div class="all"><input type="submit" value="All" id="all" /></div>
+          <div class="cookies">
+            <button class="buttonCookies">cookies</button>
+          </div>
+          <div class="cakes"><button class="buttonCakes">cake</button></div>
+          <div class="rice"><button class="buttonRice">rice</button></div>
+          <div class="stew"><button class="buttonStew">stew</button></div>
+        </div>
+        <div class="inputSearch">
+          <input type="text" class="input" placeholder="search" />
+          <input type="submit" value="Submit" class="submit" />
+        </div>
+      </div>
+      <div class="wrapper">
+        <div class="item" data-class="cookies">
+          <div class="imgContainer">
+            <img src="./images/images (1).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">cookies</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="rice">
+          <div class="imgContainer">
+            <img src="./images/images (2).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">ofada rice</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="stew">
+          <div class="imgContainer">
+            <img src="./images/images (3).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">ila</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="cookies">
+          <div class="imgContainer">
+            <img src="./images/images (4).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">flat cookie</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="stew">
+          <div class="imgContainer">
+            <img src="./images/images (5).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">ewedu</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="rice">
+          <div class="imgContainer">
+            <img src="./images/images (6).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">fried rice</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="cake">
+          <div class="imgContainer">
+            <img src="./images/images (14).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">chocolate cake</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="stew">
+          <div class="imgContainer">
+            <img src="./images/images (8).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">efo</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="cake">
+          <div class="imgContainer">
+            <img src="./images/images (9).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">blackberry cake</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="rice">
+          <div class="imgContainer">
+            <img src="./images/images (10).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">jollof rice</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function() {
+        let input = document.querySelector(".input");
+        let submit = document.querySelector(".submit");
+        let all = document.querySelector("#all");
+        let text1 = document.querySelectorAll(".text-1");
+        let button = document.querySelectorAll("button");
+        let item = document.querySelectorAll(".item");
+
+        submit.addEventListener("click", function(e) {
+          let value = input.value;
+          input.value = "";
+          Array.from(text1).forEach(text => {
+            let item = text.parentElement.parentElement.parentElement;
+            if (text.innerHTML !== value) {
+              item.style.display = "none";
+            } else {
+              item.style.display = "block";
+            }
+          });
+          e.preventDefault();
+        });
+
+        button.forEach(buttons => {
+          buttons.addEventListener("click", function() {
+            let value = buttons.innerHTML;
+
+            Array.from(item).filter(items => {
+              if (items.dataset.class == value) {
+                items.style.display = "block";
+              } else {
+                items.style.display = "none";
+              }
+            });
+          });
+        });
+
+        all.addEventListener("click", function() {
+          item.forEach(items => {
+            items.style.display = "block";
+          });
+          e.preventDefault();
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .img {
+        width: 200px;
+        height: 200px;
+      }
+      .text {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+      }
+      .container {
+        text-align: center;
+      }
+      .item {
+        background: blue;
+        width: 200px;
+        border: 1px solid black;
+        margin: 10px;
+      }
+      .input {
+        width: 80%;
+        height: 35px;
+      }
+      .wrapper {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        grid-gap: 0;
+      }
+      .list {
+        list-style-type: none;
+        background-color: blue;
+      }
+      .li {
+        margin-left: -30px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .itemContainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      button,
+      .submit,
+      #all {
+        width: 70px;
+        height: 30px;
+        border: none;
+        color: white;
+        background-color: chocolate;
+      }
+      .searchBtn {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+      }
+      .inputSearch {
+        margin: 10px 0px;
+      }
+      .submit {
+        height: 41px;
+      }
+      .itemList {
+        background-color: red;
+        width: 100%;
+        height: 300px;
+      }
+      .imgList {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Our store</h1>
+      <div class="search">
+        <div class="searchBtn">
+          <div class="all"><input type="submit" value="All" id="all" /></div>
+          <div class="cookies">
+            <button class="buttonCookies">cookies</button>
+          </div>
+          <div class="cakes"><button class="buttonCakes">cake</button></div>
+          <div class="rice"><button class="buttonRice">rice</button></div>
+          <div class="stew"><button class="buttonStew">stew</button></div>
+        </div>
+        <div class="inputSearch">
+          <input type="text" class="input" placeholder="search" />
+          <input type="submit" value="Submit" class="submit" />
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="itemList">
+          <div class="itemClicked">
+            Total : #<span class="total">0.00</span>
+          </div>
+          <ul class="list"></ul>
+        </div>
+        <div class="itemContainer">
+          <div class="item" data-class="cookies">
+            <div class="imgContainer">
+              <img src="./images/images (1).jpeg" alt="" class="img" />
+              <div class="text">
+                <div class="text-1">cookies</div>
+                <div class="text-2">#60</div>
+              </div>
+            </div>
+          </div>
+          <div class="item" data-class="rice">
+            <div class="imgContainer">
+              <img src="./images/images (2).jpeg" alt="" class="img" />
+              <div class="text">
+                <div class="text-1">ofada rice</div>
+                <div class="text-2">#60</div>
+              </div>
+            </div>
+          </div>
+          <div class="item" data-class="stew">
+            <div class="imgContainer">
+              <img src="./images/images (3).jpeg" alt="" class="img" />
+              <div class="text">
+                <div class="text-1">ila</div>
+                <div class="text-2">#60</div>
+              </div>
+            </div>
+          </div>
+          <div class="item" data-class="cookies">
+            <div class="imgContainer">
+              <img src="./images/images (4).jpeg" alt="" class="img" />
+              <div class="text">
+                <div class="text-1">flat cookie</div>
+                <div class="text-2">#60</div>
+              </div>
+            </div>
+          </div>
+          <div class="item" data-class="stew">
+            <div class="imgContainer">
+              <img src="./images/images (5).jpeg" alt="" class="img" />
+              <div class="text">
+                <div class="text-1">ewedu</div>
+                <div class="text-2">#60</div>
+              </div>
+            </div>
+          </div>
+          <div class="item" data-class="rice">
+            <div class="imgContainer">
+              <img src="./images/images (6).jpeg" alt="" class="img" />
+              <div class="text">
+                <div class="text-1">fried rice</div>
+                <div class="text-2">#60</div>
+              </div>
+            </div>
+          </div>
+          <div class="item" data-class="cake">
+            <div class="imgContainer">
+              <img src="./images/images (14).jpeg" alt="" class="img" />
+              <div class="text">
+                <div class="text-1">chocolate cake</div>
+                <div class="text-2">#60</div>
+              </div>
+            </div>
+          </div>
+          <div class="item" data-class="stew">
+            <div class="imgContainer">
+              <img src="./images/images (8).jpeg" alt="" class="img" />
+              <div class="text">
+                <div class="text-1">efo</div>
+                <div class="text-2">#60</div>
+              </div>
+            </div>
+          </div>
+          <div class="item" data-class="cake">
+            <div class="imgContainer">
+              <img src="./images/images (9).jpeg" alt="" class="img" />
+              <div class="text">
+                <div class="text-1">blackberry cake</div>
+                <div class="text-2">#60</div>
+              </div>
+            </div>
+          </div>
+          <div class="item" data-class="rice">
+            <div class="imgContainer">
+              <img src="./images/images (10).jpeg" alt="" class="img" />
+              <div class="text">
+                <div class="text-1">jollof rice</div>
+                <div class="text-2">#60</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function() {
+        let input = document.querySelector(".input");
+        let submit = document.querySelector(".submit");
+        let listing = document.querySelector(".list");
+        let total = document.querySelector(".total");
+        let all = document.querySelector("#all");
+        let text1 = document.querySelectorAll(".text-1");
+        let button = document.querySelectorAll("button");
+        let item = document.querySelectorAll(".item");
+
+        submit.addEventListener("click", function(e) {
+          let value = input.value;
+          input.value = "";
+          Array.from(text1).forEach(text => {
+            let item = text.parentElement.parentElement.parentElement;
+            if (text.innerHTML !== value) {
+              item.style.display = "none";
+            } else {
+              item.style.display = "block";
+            }
+          });
+          e.preventDefault();
+        });
+
+        button.forEach(buttons => {
+          buttons.addEventListener("click", function() {
+            let value = buttons.innerHTML;
+
+            Array.from(item).filter(items => {
+              if (items.dataset.class == value) {
+                items.style.display = "block";
+              } else {
+                items.style.display = "none";
+              }
+            });
+          });
+        });
+
+        all.addEventListener("click", function() {
+          item.forEach(items => {
+            items.style.display = "block";
+          });
+          e.preventDefault();
+        });
+        let list = [];
+        item.forEach(items => {
+          items.addEventListener("click", function() {
+            list.push(items);
+           
+            list.forEach(lists => {
+              let li = document.createElement("li");
+              li.classList = "li";
+              let divImg = document.createElement("div");
+              let img = document.createElement("img");
+              img.className = "imgList";
+              img.src = items.firstElementChild.firstElementChild.src;
+              divImg.appendChild(img);
+              console.log(img);
+              let div = document.createElement("div");
+              div.innerHTML = `
+            ${items.firstElementChild.lastElementChild.firstElementChild.innerHTML}<br/>
+                  ${items.firstElementChild.lastElementChild.lastElementChild.innerHTML}
+            `;
+              let button = document.createElement("button");
+              button.className = "delete";
+              button.innerHTML = "X";
+              li.appendChild(divImg);
+              li.appendChild(div);
+              li.appendChild(button);
+              listing.appendChild(li);
+              let number = total.innerHTML;
+              let number2 = items.firstElementChild.lastElementChild.lastElementChild.innerHTML
+                .split("")
+                .splice(1)
+                .join("");
+              let ans = parseInt(number) + parseInt(number2);
+              total.innerHTML = ans;
+            });
+          });
+        });
+        listing.addEventListener("click", function(e) {
+          if (e.target.classList.contains("delete")) {
+            let li = e.target.parentElement;
+            let ul = e.target.parentElement.parentElement;
+            ul.removeChild(li);
+          list.filter((li,index)=>{
+            
+          })
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

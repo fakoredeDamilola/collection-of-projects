@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .img {
+        width: 200px;
+        height: 200px;
+      }
+      .text {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+      }
+      .container {
+        text-align: center;
+      }
+      .item {
+        background: blue;
+        width: 200px;
+        border: 1px solid black;
+        margin: 10px;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        overflow-y: scroll;
+        width: 100%;
+        top: 0;
+
+        z-index: 20;
+        bottom: 0;
+        left: 0;
+      }
+      .modalImg {
+        width: 400px;
+        height: 880px;
+      }
+      .wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      .cancel {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Our store</h1>
+
+      <div class="wrapper">
+        <div class="item" data-class="cookies">
+          <div class="imgContainer">
+            <img src="./images/images (1).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">cookies</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="rice">
+          <div class="imgContainer">
+            <img src="./images/images (2).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">ofada rice</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="stew">
+          <div class="imgContainer">
+            <img src="./images/images (3).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">ila</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="cookies">
+          <div class="imgContainer">
+            <img src="./images/images (4).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">flat cookie</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="stew">
+          <div class="imgContainer">
+            <img src="./images/images (5).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">ewedu</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="rice">
+          <div class="imgContainer">
+            <img src="./images/images (6).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">fried rice</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="cake">
+          <div class="imgContainer">
+            <img src="./images/images (14).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">chocolate cake</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="stew">
+          <div class="imgContainer">
+            <img src="./images/images (8).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">efo</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="cake">
+          <div class="imgContainer">
+            <img src="./images/images (9).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">blackberry cake</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+        <div class="item" data-class="rice">
+          <div class="imgContainer">
+            <img src="./images/images (10).jpeg" alt="" class="img" />
+            <div class="text">
+              <div class="text-1">jollof rice</div>
+              <div class="text-2">#60</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal">
+        <div class="cancel">X</div>
+
+        <img src="" alt="" class="modalImg" />
+      </div>
+    </div>
+    <script>
+      (function() {
+        let img = document.querySelectorAll(".img");
+        let modal = document.querySelector(".modal");
+        let modalImg = document.querySelector(".modalImg");
+        let container = document.querySelector(".container");
+        let cancel = document.querySelector(".cancel");
+        img.forEach(im =>
+          im.addEventListener("click", function() {
+            modalImg.src = im.src;
+            document.body.style.overflow = "hidden";
+            modal.style.display = "block";
+          })
+        );
+        cancel.addEventListener("click", function() {
+          document.body.style.overflow = "overflow";
+          modal.style.display = "none";
+        });
+      })();
+    </script>
+  </body>
+</html>

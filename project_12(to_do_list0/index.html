@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .input {
+        width: 80%;
+        height: 35px;
+      }
+      .submit {
+        background-color: green;
+        height: 35px;
+        border: none;
+        color: white;
+      }
+      .container {
+        width: 80%;
+      }
+      .collection {
+        list-style-type: none;
+      }
+      .collection li {
+        background-color: rgb(90, 193, 224);
+        padding: 5px;
+        margin: 5px 0;
+        color: white;
+      }
+      .edit,
+      .deleted,
+      .check {
+        float: right;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+      .edit {
+        color: blue;
+      }
+      .deleted {
+        color: red;
+      }
+      .update {
+        display: none;
+        background-color: blue;
+        border: none;
+        height: 35px;
+      }
+      /* .checking::before {
+        content: "co";
+      } */
+      .error {
+        display: none;
+        height: 40px;
+        background: red;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="error">please input a value</div>
+      <div class="wrapper">
+        <div class="inputDiv">
+          <input
+            type="text"
+            class="input"
+            placeholder="there is something to do today..."
+          />
+          <input type="submit" value="submit" class="submit" />
+          <input type="submit" value="update" class="update" />
+        </div>
+        <div class="output">
+          <ul class="collection"></ul>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function() {
+        let input = document.querySelector(".input");
+        let submit = document.querySelector(".submit");
+        let output = document.querySelector(".output");
+        let collection = document.querySelector(".collection");
+        let update = document.querySelector(".update");
+        let error = document.querySelector(".error");
+        //addEventlistener on delete button
+        collection.addEventListener("click", deleteItem);
+        let num = 0;
+        if (localStorage.getItem("items") !== null) {
+          let item = JSON.parse(localStorage.getItem("items"));
+          createElement(item);
+        }
+
+        submit.addEventListener("click", function(e) {
+          let value = input.value;
+
+          if (input.value === "") {
+            error.style.display = "block";
+            setTimeout(function() {
+              error.style.display = "none";
+            }, 2000);
+          } else {
+            addItems(value);
+          }
+
+          e.preventDefault();
+        });
+        function createElement(item) {
+          item.forEach(it => {
+            let li = document.createElement("li");
+            let check = document.createElement("span");
+            let edit = document.createElement("span");
+            let deleted = document.createElement("span");
+            let text = document.createElement("span");
+            text.className = "text";
+            text.appendChild(document.createTextNode(it.value));
+
+            li.className = `li-${item.length}`;
+
+            console.log(li.className);
+            li.appendChild(text);
+            check.appendChild(document.createTextNode("N"));
+            check.className = "check";
+            check.className += " checking";
+            edit.appendChild(document.createTextNode("I"));
+            edit.className = "edit";
+            deleted.appendChild(document.createTextNode("X"));
+            deleted.className = "deleted";
+            li.appendChild(check);
+            li.appendChild(edit);
+            li.appendChild(deleted);
+            collection.appendChild(li);
+          });
+        }
+
+        function deleteItem(e) {
+          if (e.target.classList.contains("deleted")) {
+            if (confirm(`are you sure you want to remove`)) {
+              let li = e.target.parentElement;
+              let ul = e.target.parentElement.parentElement;
+              ul.removeChild(li);
+            }
+          } else if (e.target.classList.contains("check")) {
+            let check = document.querySelector(".check");
+            if (check.innerHTML == "N") {
+              check.innerHTML = "CO";
+            } else {
+              check.innerHTML = "N";
+            }
+            // check.classList.toggle("checking");
+          } else if (e.target.classList.contains("edit")) {
+            update.style.display = "block";
+            submit.style.display = "none";
+            let li = e.target.parentElement.className;
+            console.log(li);
+            let text = e.target.parentElement.firstElementChild;
+
+            console.log(text);
+
+            input.value = text.innerHTML;
+            update.addEventListener("click", function(e) {
+              let child = text.parentElement;
+              console.log(child);
+              if (input.value === "") {
+                error.style.display = "block";
+                setTimeout(function() {
+                  error.style.display = "none";
+                }, 2000);
+              } else {
+                text.innerHTML = input.value;
+                submit.style.display = "block";
+                update.style.display = "none";
+                //update storage
+                let item = JSON.parse(localStorage.getItem("items"));
+                console.log(item);
+                item.forEach(it => {
+                  if (it.id === child.className) {
+                    console.log(1);
+                    it.name = input.value;
+                  }
+                });
+                localStorage.setItem("items", JSON.stringify(item));
+                input.value = "";
+              }
+
+              e.preventDefault();
+            });
+          }
+        }
+
+        function addItems(value) {
+          let item;
+          if (localStorage.getItem("items") === null) {
+            let num = 0;
+            item = [];
+            //push new item
+            item.push({ name: value, id: `li-${num}` });
+            createElement(item);
+            localStorage.setItem("items", JSON.stringify(item));
+          } else {
+            item = JSON.parse(localStorage.getItem("items"));
+            let num = item[item.length - 1] + 1;
+            item.push({ name: value, id: `li-${num}` });
+            createElement(item);
+            localStorage.setItem("items", JSON.stringify(item));
+          }
+          input.value = "";
+        }
+      })();
+    </script>
+  </body>
+</html>
